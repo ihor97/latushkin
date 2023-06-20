@@ -1,53 +1,56 @@
-const store={
-    getItem(name,price){
-        return {
-            name,
-            price,
-            weight:Math.floor(Math.random()*1000+1)/1000
-        }
+// const point={
+//     x:3,
+//     y:4
+// }
+// // гетер сетер
+// Object.defineProperty(point,'distance',{
+//     get:function(){
+//         return (this.x**2+this.y**2)**(.5)
+//     },
+//     set:function (val) {
+//         this.x=10
+//         this.y=0
+//     }
+
+// })
+
+// console.log(point.distance=10);
+// console.log(point);
+
+// const person={
+//     name:'ivan',
+//     year:1997
+// }
+
+// Object.defineProperty(person,'age',{
+//     get(){
+//         return (new Date()).getFullYear()-this.year
+//     },
+//     set(val){
+//         this.year=(new Date()).getFullYear()-val
+//     }
+// })
+
+// console.log(person.age=47);
+// console.log(person);
+
+// розумні гетери сетери
+let user = {
+    get name() {
+        // ми тіпа створюємо зразу поле _name
+      return this._name;
+    },
+  
+    set name(value) {
+      if (value.length < 4) {
+        alert("Ім’я занадто коротке, потрібно щонайменше 4 символи");
+        return;
+      }
+      this._name = value;
     }
-}
-
-const shop={
-    name:'Shop1',
-    items:[],
-    // можна вставляти просто ф-ї
-    addItem(item){this.items.push(item)},
-    clear(){this.items=[]},
-    getTotalPrice(){
-        return this.items.reduce((sum,item)=>sum+item.price,0)
-    }
-}
-const shop2={
-    name:'Shop1',
-    items:[],
-    addItem(item){this.items.push(item)},
-    clear(){this.items=[]},
-
-    getTotalPrice(){
-        return this.items.reduce((sum,item)=>
-        {
-            return sum+item.price}
-        
-        ,0)
-    }
-}
-const items=[
-    store.getItem('Item1',50),
-    store.getItem('Item2',160),
-    store.getItem('Item3',350),
-    store.getItem('Item4',670),
-    store.getItem('Item5',700),
-    store.getItem('Item6',900)
-]
-console.log(items);
-
-shop.addItem(items[0])
-shop.addItem(items[1])
-shop.addItem(items[2])
-shop2.addItem(items[3])
-shop2.addItem(items[4])
-shop2.addItem(items[5])
-
-console.log(shop.getTotalPrice());
-console.log(shop2.getTotalPrice());
+  };
+  
+  user.name = "Петііііро";
+  console.log(user.name); // Петро
+  
+//   user.name = "";
