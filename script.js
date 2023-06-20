@@ -1,20 +1,10 @@
-// прототипне наслідування
-function Car(model) {
-    this.model=this.model
-}
+// статичні методи,поля - відносяться до класу в цілому а не до інстанса
 
-Car.prototype.drive=function () {
-    console.log('drrrr');
+function Car(model) {
+    this.model=model
+    Car.amount++
 }
-function AmbulanceCar(model,capacity) {
-    // юзаємо конструктор базового класу
-    Car.apply(this,[model]) //Car.call(this,model)
-    this.capacity=capacity
-}
-// наслідування по прототипу 
-// Object.create робить копію прототипу Car.prototype так що якщо ми будемо щось ложити в AmbulanceCar.prototype воно не попаде в Car.prototype
-// тобто клонуємо
-AmbulanceCar.prototype=Object.create(Car.prototype)
-AmbulanceCar.prototype.alert=function () {
-    console.log('wiu wiu wiu');
+Car.amount=0
+Car.printAmount=function () {
+    console.log(this.amount);
 }
