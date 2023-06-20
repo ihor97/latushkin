@@ -1,23 +1,20 @@
-// власні властивості - тіщо створені в коснтрукторі чи створені вручну
-// невласні - доступні в обєкті але знаходяться в прототипі
+// прототипне наслідування
+function Car(model) {
+    this.model=this.model
+}
 
-// власні властивості мають пріорітет як в записуванні так і при доступі
-
-// якщо ми перезаписуємо прототип повністю то треба буде ще добавити властивість конструктор вручну
-
-// function Faculty() {
-    
-// }
-
-// Faculty.prototype={
-//     add(){
-//         return 2
-//     },
-//     dec(){
-//         return -1
-//     },
-//     // типу того
-//     constructor:Faculty
-// }
-// console.log(Faculty.prototype.constructor);
-
+Car.prototype.drive=function () {
+    console.log('drrrr');
+}
+function AmbulanceCar(model,capacity) {
+    // юзаємо конструктор базового класу
+    Car.apply(this,[model]) //Car.call(this,model)
+    this.capacity=capacity
+}
+// наслідування по прототипу 
+// Object.create робить копію прототипу Car.prototype так що якщо ми будемо щось ложити в AmbulanceCar.prototype воно не попаде в Car.prototype
+// тобто клонуємо
+AmbulanceCar.prototype=Object.create(Car.prototype)
+AmbulanceCar.prototype.alert=function () {
+    console.log('wiu wiu wiu');
+}
