@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+body{
+    background-color: #e5e5e5;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.pizza{
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px;
+    width: 250px;
+    box-shadow: 2px 2px 3px #ccc;
+}
+.pizza img{
+    width: 100%;
+    height: 200px;
+    /* Свойство object-fit определяет, как содержимое заменяемого элемента,
+     такого как <img> или <video>
+    , должно заполнять контейнер относительно его высоты и ширины. */
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.pizza figcaption{
+    padding: 10px;
+    background-color: #fff;
+}
