@@ -6,12 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script type="text/javascript" src="Addon.js"></script>
   <script type="text/javascript" src="pizza.class.js"></script>
   <script type="text/javascript" src="pizzaSize.class.js"></script>
   <script type="text/javascript" src="templateProccessor.js"></script>
   <script type="text/javascript" src="cart.class.js"></script>
 
-<link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -20,15 +21,25 @@
       Всего позиций: <span id="cart-amount">0</span>
     </h3>
     <h3>Стоимость: <span id="cart-price">0</span>р.</h3>
+    <button id="show-cart" type="button">Показати корзину</button>
+  </div>
+  <div id="cart-container">
+    <button id="back" type="button"> назад до списку піц</button>
+    <div id="cart-items"></div>
   </div>
   <div id="container">
 
   </div>
 
+  <div id="addons">
+    <div>
 
+      <div id="addons-container">
 
-
-
+      </div>
+      <button type="button" data-action="FinishAddons" id="finish-addons">добавити в коризину</button>
+    </div>
+  </div>
 
 
 

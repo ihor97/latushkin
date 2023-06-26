@@ -1,9 +1,24 @@
 var Pizzeria = {
 
     async init() {
+        let addonData = await this.Data.load("./data/addons.json")
+        this.onAddonsLoaded(addonData)
         let data = await this.Data.load('./data/data.json')
         this.onDataLoaded(data)
+        this.initCart()
     },
+    onAddonsLoaded(data) {
+        this.Data.addons = data.map(obj => {
+            return new Addon(obj.title, obj.price)
+        })
+        this.buildAddonsList()
+    },
+    buildAddonsList() {
+        var processor = new TemplateProcessor()
+        this.Dom.addonsContainer.innerHTML = this.Data.addons.reduce((p, c) => p + processor.getAddonHtml(c), ``)
+        this.Dom.addonsWindow.addEventListener("click", Pizzeria.EventHandlers.addonsClick)
+    },
+
     // перетворює з json в масив обєктів класу Pizza
     onDataLoaded(data) {
         this.Data.pizzas = data.map(function (obj) {
@@ -33,8 +48,20 @@ var Pizzeria = {
         this.Dom.pizzaContainer.addEventListener('click', this.EventHandlers.clickListener)
 
     },
+    initCart(){
+        this.Dom.showCartBtn.addEventListener('click',this.EventHandlers.onCartBtnClick)
+        this.Dom.hideCartBtn.addEventListener('click',this.EventHandlers.onCartBackClick)
+    }
+    ,
     Dom: {
         pizzaContainer: document.getElementById('container'),
+        addonsContainer: document.getElementById('addons-container'),
+        addonsWindow: document.getElementById('addons'),
+        showCartBtn:document.getElementById('show-cart'),
+        cartWindow:document.getElementById('cart-container'),
+        cartItemContainer:document.getElementById('cart-items'),
+        hideCartBtn:document.getElementById('back')
+        ,
         setPizzaSizePrice(price, id) {
             // елемент з класом і з атрибутом
             document.querySelector(`.pizza[data-id='${id}'] span.price`).innerText = price
@@ -44,14 +71,44 @@ var Pizzeria = {
         },
         getSelectedSizeFor(pizzaId) {
             let inp = document.querySelector(`.pizza[data-id='${pizzaId}'] input[type='radio']:checked`)
-            
+
             let size = inp.nextElementSibling.innerText
             let price = inp.value
             return new PizzaSize(size, price)
         },
-        redrawCart(){
-            document.getElementById('cart-amount').innerText=Pizzeria.Data.Cart.getAmount()
-            document.getElementById('cart-price').innerText=Pizzeria.Data.Cart.getSumPrice().toFixed(2)
+        redrawCart() {
+            document.getElementById('cart-amount').innerText = Pizzeria.Data.Cart.getAmount()
+            document.getElementById('cart-price').innerText = Pizzeria.Data.Cart.getSumPrice().toFixed(2)
+        },
+        showAddonsInterface() {
+
+            document.getElementById("addons").style.display = "block"
+        },
+        hideAddonsInterface() {
+            document.getElementById("addons").style.display = "none"
+
+        },
+        finishAddonsSelections() {
+            let addons = Array.from(this.addonsContainer.querySelectorAll(':checked'))
+                .map(input =>
+                    Pizzeria.Data.getAddonById(+input.getAttribute("data-id"))
+                )
+                console.log(addons);
+                Pizzeria.Data.Cart.finishAddonsSelections(addons)
+                this.hideAddonsInterface()
+        },
+        showCart(){
+            this.pizzaContainer.style.display='none'
+            this.cartWindow.style.display='block'
+            let processor=new TemplateProcessor()
+            Pizzeria.Dom.cartItemContainer.innerHTML=
+            Pizzeria.Data.Cart.items.reduce((p,c)=>
+                p+processor.getCartItemHtml(c),``
+            )
+        },
+        hideCart(){
+            this.pizzaContainer.style.display='block'
+            this.cartWindow.style.display='none'
         }
     },
     EventHandlers: {
@@ -69,11 +126,30 @@ var Pizzeria = {
                 Pizzeria.Data.getPizzaById(id),
                 Pizzeria.Dom.getSelectedSizeFor(id)
             ]
+            let cartItem = new CartItem(pizza, size)
+            Pizzeria.Data.Cart.pendingitem = cartItem
+            Pizzeria.Dom.showAddonsInterface()
+            // Pizzeria.Data.Cart.add(cartItem)
+        },
+        addonsClick(e) {
+            switch (e.target.getAttribute("data-action")) {
+                case "FinishAddons":
+                    Pizzeria.Dom.finishAddonsSelections()
+                    break;
 
-            Pizzeria.Data.Cart.add(pizza, size)
+                default:
+                    if (e.target == this) {
+                        Pizzeria.Dom.hideAddonsInterface()
+                    }
+            }
         }
         ,
-
+        onCartBtnClick(e){
+            Pizzeria.Dom.showCart()
+        },
+        onCartBackClick(e){
+            Pizzeria.Dom.hideCart()
+        },
         clickListener(e) {
             switch (e.target.getAttribute('data-action')) {
                 case 'AddToCart':
@@ -125,25 +201,35 @@ var Pizzeria = {
         },
         Cart: {
             items: [],
-            add(pizza, size) {
-                this.items.push(new CartItem(pizza, size))
+            pendingitem: null,
+            add(cartItem) {
+                this.items.push(cartItem)
                 Pizzeria.Dom.redrawCart()
             },
-            getSumPrice(){
-                return this.items.reduce((p,c)=>p+(+c.getprice()),0)
+            getSumPrice() {
+                return this.items.reduce((p, c) => p + (+c.getprice()), 0)
             },
-            getAmount(){
+            getAmount() {
                 return this.items.length
+            },
+            finishAddonsSelections(addons){
+                addons.forEach( addon =>this.pendingitem.addAddon(addon))
+                this.add(this.pendingitem)
+                this.pendingitem=null
             }
         }
-       
+
 
         ,
         getPizzaById(id) {
             return this.pizzas.filter(pizza => pizza.id === +id)[0]
+        },
+        getAddonById(id) {
+            return this.addons.filter(pizza => pizza.id === +id)[0]
         }
         ,
-        pizzas: []
+        pizzas: [],
+        addons: []
 
     },
 

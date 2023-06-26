@@ -29,3 +29,27 @@ body{
     padding: 10px;
     background-color: #fff;
 }
+#addons{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+}
+#addons>div{
+    background-color: #fff;
+    display: block;
+    width: 50%;
+    padding: 10px;
+    margin: 30px auto;
+}
+#addons>div label{
+    display: block;
+
+}
+
+#cart-container{
+    display: none;
+}
