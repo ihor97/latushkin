@@ -1,51 +1,55 @@
- .elems{
-    height: 1000px;
-    margin: 0 auto;
-    padding: 10px;
-    width: 300px;
-    border: 1px solid black;
-    position: relative;
- }
-
- .elems .pos{
-    height: 200px;
-    background-color: green;
-    margin-bottom: 10px;
- }
-/* :nth-child(2): Це псевдоклас CSS, який вибирає елемент, який є другим дочірнім елементом 
-свого батьківського елемента. 
-В даному випадку, це вираз вибере другий елемент з класом "pos" серед його батьківських елементів. */
- .elems .pos:nth-child(2){
-    background-color: blueviolet;
- }
-
- .elems .pos:nth-child(3){
-    background-color: darksalmon;
- }
-
- .elems .pos:nth-child(4){
-    background-color: darkturquoise;
- }
-
- .rel{
-    position: relative;
-    left: 40px;
-    bottom: 40px;
- }
- /* при абсолюьному позиціонуванні пропала  ширина */
-/* при абсолютному позиціонуванні у цьому випадку ширина відраховується від тега body  */
-/* при абсолютному аозиціонуванні елементи вистраюються по z осі  */
-.abs{
-    position: absolute;
-width: 100%;
-left: 10px;
-top: 100px;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-/* елемент буде закріалений внизу і буде прокручуватися разом зі сторінкою */
-.elems .fix {
-    position: fixed;
-    bottom: 0;
+header{
+    background-color: #115;
     width: 100%;
+    padding: 0 20%;
+    position: fixed;
+    top: 0;
     left: 0;
-    margin-bottom: 0px;
+}
+
+header nav ul{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+header nav ul li{
+    display: block;
+    position: relative;
+}
+header nav ul li a {
+display: block;
+padding: 20px 15px;
+text-decoration: none;
+color: #fff;
+
+
+}
+header nav ul li a:hover{
+background-color: #77c;
+}
+
+header nav ul li:hover ol{
+    display: block;
+}
+/* замість того щоб вказувати ширину можна просто вакзати те щоб ніякий текст не переносився */
+header nav ul ol li{
+    white-space: nowrap;
+}
+header nav ul ol{
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #115;
+
+
+}
+
+main{
+    min-height: 1000px;
+    padding-top: 70px;
 }
