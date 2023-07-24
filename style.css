@@ -3,94 +3,247 @@
     padding: 0;
     box-sizing: border-box;
 }
-header{
-    background-color: #115;
-    width: 100%;
-    padding: 0 20%;
-    position: fixed;
-    top: 0;
-    left: 0;
+.payment {
+    padding: 50px;
+    background-color: #e5e5e5;
+}
+.payment form{
+    display: block;
+    width: 750px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow:  0 0 14px #ccc;
+    padding: 30px;
+}
+.heading {
+
+}
+.paytypes {
+    display: flex;align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+
+}
+.form-data {
+
 }
 
-header nav ul{
+.payment form .heading{
+margin-bottom: 40px;
+}
+
+.paytypes label{
+margin: 0 10px;
+}
+
+.paytypes label input{
+display: none;
+}
+
+
+
+
+.paytypes label span{
+    display: block;
+    width: 100px;
+    padding: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: capitalize;
+    background-color: #efefef;
+    border-radius: 5px;
+    text-align: center;
+    /* як можна забацати каптинку по середині */
+    padding-top: 60px;
+cursor: pointer;
+background-image: url('./download.png');
+background-size: 24px 24px;
+ background-repeat: no-repeat;
+ background-position:center 20px ;
+ border: 1px solid transparent;
+}
+
+
+/* робимо клікаюельними радіо інпути */
+/* + це наступний елемент  */
+.paytypes label input:checked + span{
+border: 1px solid #49f;
+background-color: transparent;
+}
+
+.payment .form-data{
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    /* Значення space-evenly розподіляє доступний вільний простір між елементами або рядками рівномірно, таким чином, що проміжний відстань між кожною парою сусідніх елементів або рядків однаковий. Це означає, що відстань між першим елементом та контейнером, а також відстань між останнім елементом та контейнером, будуть однаковими, а також відстань між кожною парою сусідніх елементів буде однаковою. */
+    justify-content: space-evenly;
+
 }
-header nav ul li{
+.payment .form-data .col{
+    width: 40%;
+}
+
+.payment .form-data h3{
+margin-bottom: 15px;
+font-weight: 0;
+font-size: 18px;
+}
+.payment .form-data h3::before{
+content: '1';
+width: 22px;
+height: 22px;
+display: inline-block;
+border: 1.5px solid black;
+font-size: 12px;
+text-align: center;
+line-height: 22px;
+border-radius: 22px;
+margin-right: 10px;
+position: relative;
+top: -2px;
+}
+.payment .form-data label{
     display: block;
-    position: relative;
+margin-bottom: 10px;
 }
-header nav ul li a {
-display: block;
-padding: 20px 15px;
-text-decoration: none;
-color: #fff;
-
-
-}
-header nav ul li a:hover{
-background-color: #77c;
-}
-
-header nav ul li:hover ol{
+.payment .form-data label span{
     display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    
 }
-/* замість того щоб вказувати ширину можна просто вакзати те щоб ніякий текст не переносився */
-header nav ul ol li{
-    white-space: nowrap;
-}
-header nav ul ol{
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #115;
-
-
-}
-
-main{
-    min-height: 1000px;
-    padding-top: 70px;
+.payment .form-data label input{
+    outline: none;
+    display: block;
+width: 100%;
+background-color: transparent;
+padding:7px 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+/* браузер ставить інпуту шрифт по замовчуванню */
+font-family: inherit;
 }
 
+.payment .form-data label  input.card-input{
+    /* фон для інпута */
+    background-image: url('./download.png');
+    background-position: calc(100% - 5px) center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px ;
 
-.lightbox {
-    position: fixed;
-    /* width: 100%;
-    height: 100%; */
-    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.payment .form-data .col-3{
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.payment .form-data .col-3 label{
+    width: 30%;
+}
+.payment .form-data .col-3 select{
+    display: block;
+    width: 100%;
+    padding: 7px 12px;
+    font-family: inherit;
+    border-color: #e5e5e5;
+    border: 0;
+    border-bottom: 1.5px solid #ccc;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #999;
+    outline: none;
+}
+
+
+.col {
+}
+.row {
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.payment form .heading h3{
+    text-align: center;
+    font-size: 36px;
+    font-weight: normal;
+    display: flex; 
     align-items: center;
     justify-content: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-.lightbox-container {
-    width: 40%;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #ccc;
 
 }
+.payment form .heading p{
+font-style: italic;
+font-size: 12px;
+color: #999;
+width: 250px;
+margin: 0 auto;
+text-align: center;
+}
 
-.lightbox-container h2:before{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.payment form .heading h3::before{
     content: '';
-    /* за допомогою цього у едемента появляється висота і ширина */
     display: inline-block;
-    margin-right: 10px;
-    width: 22px;
-    height: 22px;
-    background-image: url('./download.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    /* опускаємо іконку за допомогою відносного позиціонування */
-    position: relative;
-    top: 3px;
+    width: 80px;
+    border-bottom: 1px solid #ccc;
+margin-right: 20px; 
 
-    /* другий варіант */
-    /* vertical-align: middle; */
+}
+.payment form .heading h3::after{
+    content: '';
+    display: inline-block;
+    width: 80px;
+    border-bottom: 1px solid #ccc;
+margin-left: 20px;
+
 }

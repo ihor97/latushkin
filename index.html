@@ -17,60 +17,113 @@
 <body>
 
 
-<header>
-  <nav>
-    <ul>
-      <li>
-        <a href=""> link1</a>
-      </li>
-      <li>
-        <a href=""> link2</a>
-      </li>
-      <li>
-        <a href=""> link3</a>
-        <ol>
-          <li>
-            <a href="">Link for google.com</a>
-          </li>
-          <li>
-            <a href="">Link for 1.2</a>
-          </li>
-          <li>
-            <a href="">Link for 1.3</a>
-          </li>
-          <li>
-            <a href="">Link for 1.4</a>
-          </li>
-        </ol>
-      </li>
-      <li>
-        <a href=""> link1</a>
-      </li>
-    </ul>
-  </nav>
-</header>
+<!-- флажок або перемиач стилізують так ставлять їм appereance: none -->
+<!-- потім створюють псевдоелемент :before і стилізують його під флажлк -->
+<!-- для псевдоелемента :checked описують стилі для checked -->
+
+<!-- select взагалі скривають і запихають його в label і потім перебудовують селект вручну-->
+
+
+
 <main>
-  <h1>Hello</h1>
-
-
-
-  <section>
-    <div class="lightbox">
-      <div class="lightbox-container">
-        <h2>your cart</h2>
-        <p>Add items to  ur cart to see table</p>
+  <section class="payment">
+    <form action="">
+      <div class="heading">
+        <h3>Billing info</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, consectetur.</p>
       </div>
-    </div>
+
+      <div class="paytypes">
+        <label >
+          <input type="radio" name="paytype">
+          <span>Credit card</span>
+        </label>
+        <label >
+          <input type="radio" name="paytype">
+          <span>Gift card</span>
+        </label>
+        <label >
+          <input type="radio" name="paytype">
+          <span>paypal</span>
+        </label>
+      </div>
+      <div class="form-data">
+        <div class="col">
+          <h3>Billing adress</h3>
+
+          <div class="row">
+            <label >
+              <span>Full name</span>
+              <input type="text">
+            </label>
+          </div>
+          <div class="row">
+            <label >
+              <span>Adress 1</span>
+              <input type="text">
+            </label>
+          </div>
+          <div class="row">
+            <label >
+              <span>Adress 2</span>
+              <input type="text">
+            </label>
+          </div>
+
+        </div>
+        <div class="col">
+          <h3>Name on card</h3>
+          <div class="row">
+            <label >
+              <span>Adress 2</span>
+              <input type="text">
+            </label>
+          </div>
+          <div class="row">
+            <label >
+              <span>card number</span>
+              <input type="text" class="card-input" placeholder="0000-0000-0000-0000">
+            </label>
+          </div>
+
+          <div class="col-3 row">
+            <label >
+              <span>CCV</span>
+              <input type="text" placeholder="CCV">
+            </label>
+            <label >
+              <span>Month</span>
+              <select name="" id="">
+                <option >01</option>
+                <option >02</option>
+                <option >03</option>
+                <option >04</option>
+                <option >05</option>
+                <option >06</option>
+                <option >07</option>
+                <option >08</option>
+                <option >09</option>
+                <option >10</option>
+                <option >11</option>
+                <option >12</option>
+              </select>
+            </label>
+            <label >
+              <span>Year</span>
+              <select name="" id="">
+                <option >20</option>
+                <option >21</option>
+                <option >22</option>
+      
+              </select>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </form>
   </section>
 </main>
-
-
-
-
-
-
-
-
 
 
 
