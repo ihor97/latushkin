@@ -53,3 +53,44 @@ main{
     min-height: 1000px;
     padding-top: 70px;
 }
+
+
+.lightbox {
+    position: fixed;
+    /* width: 100%;
+    height: 100%; */
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.lightbox-container {
+    width: 40%;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ccc;
+
+}
+
+.lightbox-container h2:before{
+    content: '';
+    /* за допомогою цього у едемента появляється висота і ширина */
+    display: inline-block;
+    margin-right: 10px;
+    width: 22px;
+    height: 22px;
+    background-image: url('./download.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    /* опускаємо іконку за допомогою відносного позиціонування */
+    position: relative;
+    top: 3px;
+
+    /* другий варіант */
+    /* vertical-align: middle; */
+}
